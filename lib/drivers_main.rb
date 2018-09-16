@@ -2,7 +2,7 @@ require 'rubygems'
 require 'yaml'
 require 'fileutils'
 require 'httparty'
-require_relative 'helper.rb'
+require_relative 'helper'
 
 class DriverManager
 
