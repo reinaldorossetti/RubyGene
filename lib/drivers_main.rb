@@ -16,10 +16,10 @@ class DriverManager
 
   def read_yml(dados=@dados)
     case
-    when @system.include?("mingw32") then
+    when @system.include?("mingw32") && osarchitecture=="32" then
       @drivers << [dados['win32']['ff_name'], dados['win32']['firefox']]
       @drivers << [dados['win32']['chr_name'], dados['win32']['chrome']]
-    when @system.include?("mingw64") then
+    when @system.include?("mingw64") || osarchitecture=="64" then
       @drivers << [dados['win64']['ff_name'], dados['win64']['firefox']]
       @drivers << [dados['win64']['chr_name'], dados['win64']['chrome']]
     when ((@system.include?('linux')) && (@system.include?('x86'))) then
