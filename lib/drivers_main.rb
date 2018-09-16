@@ -16,22 +16,34 @@ class DriverManager
 
   def read_yml(dados=@dados)
     case
-    when @system.include?("mingw32") && osarchitecture=="32" then
-      @drivers << [dados['win32']['ff_name'], dados['win32']['firefox']]
-      @drivers << [dados['win32']['chr_name'], dados['win32']['chrome']]
-    when @system.include?("mingw64") || osarchitecture=="64" then
-      @drivers << [dados['win64']['ff_name'], dados['win64']['firefox']]
-      @drivers << [dados['win64']['chr_name'], dados['win64']['chrome']]
-    when ((@system.include?('linux')) && (@system.include?('x86'))) then
-      @drivers << [dados['linux32']['ff_name'], dados['linux32']['firefox']]
-      @drivers << [dados['linux32']['chr_name'], dados['linux32']['chrome']]
-    when ((@system.include?('linux')) && (@system.include?('x86_64'))) then
-      @drivers << [dados['linux64']['ff_name'], dados['linux64']['firefox']]
-      @drivers << [dados['linux64']['chr_name'], dados['linux64']['chrome']]
+    when @system.include?("mingw32") then osarchitecture=="32" ? win32 : win64
+    when @system.include?("mingw64") then win64
+    when ((@system.include?('linux')) && (@system.include?('x86'))) then linux32
+    when ((@system.include?('linux')) && (@system.include?('x86_64'))) then linux64
     else
       puts 'Seu sistema não tem suporte no momento!'
       exit
     end
+  end
+
+  def linux32(dados=@dados)
+    @drivers << [dados['linux32']['ff_name'], dados['linux32']['firefox']]
+    @drivers << [dados['linux32']['chr_name'], dados['linux32']['chrome']]
+  end
+  
+  def linux64(dados=@dados)
+    @drivers << [dados['linux64']['ff_name'], dados['linux64']['firefox']]
+    @drivers << [dados['linux64']['chr_name'], dados['linux64']['chrome']]
+  end
+
+  def win32(dados=@dados)
+    @drivers << [dados['win32']['ff_name'], dados['win32']['firefox']]
+    @drivers << [dados['win32']['chr_name'], dados['win32']['chrome']]
+  end
+
+  def win64(dados=@dados)
+    @drivers << [dados['win64']['ff_name'], dados['win64']['firefox']]
+    @drivers << [dados['win64']['chr_name'], dados['win64']['chrome']]
   end
 
   def runner
