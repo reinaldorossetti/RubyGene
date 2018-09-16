@@ -16,7 +16,7 @@ class DriverManager
 
   def read_yml(dados=@dados)
     case
-    when @system.include?("mingw32") then osarchitecture=="32" ? win32 : win64
+    when @system.include?("mingw32")  then osarchitecture=="32" ? win32 : win64
     when @system.include?("mingw64") then win64
     when ((@system.include?('linux')) && (@system.include?('x86'))) then linux32
     when ((@system.include?('linux')) && (@system.include?('x86_64'))) then linux64
@@ -27,30 +27,31 @@ class DriverManager
   end
 
   def linux32(dados=@dados)
-    @drivers << [dados['linux32']['ff_name'], dados['linux32']['firefox']]
-    @drivers << [dados['linux32']['chr_name'], dados['linux32']['chrome']]
+    @drivers << dados['linux32']['firefox']
+    @drivers << dados['linux32']['chrome']
   end
   
   def linux64(dados=@dados)
-    @drivers << [dados['linux64']['ff_name'], dados['linux64']['firefox']]
-    @drivers << [dados['linux64']['chr_name'], dados['linux64']['chrome']]
+    @drivers << [dados['linux64']['firefox']]
+    @drivers << [dados['linux64']['chrome']]
   end
 
   def win32(dados=@dados)
-    @drivers << [dados['win32']['ff_name'], dados['win32']['firefox']]
-    @drivers << [dados['win32']['chr_name'], dados['win32']['chrome']]
+    @drivers << dados['win32']['firefox']
+    @drivers << dados['win32']['chrome']
   end
 
   def win64(dados=@dados)
-    @drivers << [dados['win64']['ff_name'], dados['win64']['firefox']]
-    @drivers << [dados['win64']['chr_name'], dados['win64']['chrome']]
+    @drivers << dados['win64']['firefox']
+    @drivers << dados['win64']['chrome']
   end
 
   def runner
     read_yml # ler os dados do yml com relacao aos drivers.
     location = RbConfig::CONFIG["bindir"] # pegando o local pro ruby.
     FileUtils.makedirs("tmp") unless File.exists?(__dir__ + "/tmp/")
-    @drivers.each{|name, link|
+    @drivers.each{| hash |
+      name, link = hash['name'], hash['link']
       file_path = __dir__ + "/tmp/" + name
       unless File.exists?(file_path)
         File.open( __dir__ + "/tmp/" + name, "wb") do |file|
