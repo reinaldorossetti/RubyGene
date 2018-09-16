@@ -40,3 +40,9 @@ def extract_gz(tar_gz_archive, destination, name)
     end
   end
 end
+
+# pega a versão do os do windows correto.
+def osarchitecture
+  o, e, s = Open3.capture3("wmic os get osarchitecture")
+  o.gsub!(/\D/, '')
+end
