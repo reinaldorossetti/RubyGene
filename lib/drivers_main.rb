@@ -16,9 +16,7 @@ p @location = RbConfig::CONFIG["bindir"] # pegando o local pro ruby.
 TAR_LONGLINK = '././@LongLink'
 
 def extract_zip(file, destination)
-  #FileUtils.mkdir_p(destination)
-  #Zip::File.open(file) do |zip_file|
-::Zip::File.open(file) do |zip_file|
+  ::Zip::File.open(file) do |zip_file|
     zip_file.each do |f|
       fpath = File.join(destination, f.name)
       zip_file.extract(f, fpath) unless File.exist?(fpath)
@@ -27,7 +25,6 @@ def extract_zip(file, destination)
 end
 
 def extract_gz(tar_gz_archive, destination)
-
   Gem::Package::TarReader.new( Zlib::GzipReader.open tar_gz_archive ) do |tar|
     dest = nil
     tar.each do |entry|
@@ -55,14 +52,14 @@ end
 
 case
 when @system.include?("mingw32") then
-  p @drivers << [dados['win32']['ff_name'], dados['win32']['firefox']]
-  p @drivers << [dados['win32']['chr_name'], dados['win32']['chrome']]
+  @drivers << [dados['win32']['ff_name'], dados['win32']['firefox']]
+  @drivers << [dados['win32']['chr_name'], dados['win32']['chrome']]
 when ((@system.include?('linux')) && (@system.include?('x86'))) then
-  p @drivers << [dados['linux32']['ff_name'], dados['linux32']['firefox']]
-  p @drivers << [dados['linux32']['chr_name'], dados['linux32']['chrome']]
+  @drivers << [dados['linux32']['ff_name'], dados['linux32']['firefox']]
+  @drivers << [dados['linux32']['chr_name'], dados['linux32']['chrome']]
 when ((@system.include?('linux')) && (@system.include?('x86_64'))) then
-  p @drivers << [dados['linux64']['ff_name'], dados['linux64']['firefox']]
-  p @drivers << [dados['linux64']['chr_name'], dados['linux64']['chrome']]
+  @drivers << [dados['linux64']['ff_name'], dados['linux64']['firefox']]
+  @drivers << [dados['linux64']['chr_name'], dados['linux64']['chrome']]
 else
     puts 'Seu sistema não tem suporte no momento!'
     exit
