@@ -32,8 +32,8 @@ class DriverManager
   end
   
   def linux64(dados=@dados)
-    @drivers << [dados['linux64']['firefox']]
-    @drivers << [dados['linux64']['chrome']]
+    @drivers << dados['linux64']['firefox']
+    @drivers << dados['linux64']['chrome']
   end
 
   def win32(dados=@dados)
