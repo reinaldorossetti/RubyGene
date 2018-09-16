@@ -2,6 +2,7 @@ require 'open3'
 require 'yaml'
 require 'fileutils'
 require 'httparty'
+require 'rubygems'
 require 'zip'
 require 'rubygems/package'
 require 'zlib'
@@ -12,10 +13,12 @@ dados=YAML::load_file(File.join(@path)) # dados do arquivo .yml
 @cmds, @url, @file = [], nil, nil # inicializando as variaveis.
 p @location = RbConfig::CONFIG["bindir"] # pegando o local pro ruby.
 @drivers = []
+TAR_LONGLINK = '././@LongLink'
 
 def extract_zip(file, destination)
-  FileUtils.mkdir_p(destination)
-  Zip::File.open(file) do |zip_file|
+  #FileUtils.mkdir_p(destination)
+  #Zip::File.open(file) do |zip_file|
+::Zip::File.open(file) do |zip_file|
     zip_file.each do |f|
       fpath = File.join(destination, f.name)
       zip_file.extract(f, fpath) unless File.exist?(fpath)
@@ -24,7 +27,7 @@ def extract_zip(file, destination)
 end
 
 def extract_gz(tar_gz_archive, destination)
-  TAR_LONGLINK = '././@LongLink'
+
   Gem::Package::TarReader.new( Zlib::GzipReader.open tar_gz_archive ) do |tar|
     dest = nil
     tar.each do |entry|
