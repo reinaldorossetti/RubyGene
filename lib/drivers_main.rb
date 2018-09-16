@@ -19,6 +19,9 @@ class DriverManager
     when @system.include?("mingw32") then
       @drivers << [dados['win32']['ff_name'], dados['win32']['firefox']]
       @drivers << [dados['win32']['chr_name'], dados['win32']['chrome']]
+    when @system.include?("mingw64") then
+      @drivers << [dados['win64']['ff_name'], dados['win64']['firefox']]
+      @drivers << [dados['win64']['chr_name'], dados['win64']['chrome']]
     when ((@system.include?('linux')) && (@system.include?('x86'))) then
       @drivers << [dados['linux32']['ff_name'], dados['linux32']['firefox']]
       @drivers << [dados['linux32']['chr_name'], dados['linux32']['chrome']]
