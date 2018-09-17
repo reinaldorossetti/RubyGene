@@ -1,27 +1,30 @@
 
 win32:
-  ff_name: geckodriver-v0.21.0-win32.zip
-  firefox: https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-win32.zip
-  chr_name: chromedriver_win32.zip
-  chrome: https://chromedriver.storage.googleapis.com/2.42/chromedriver_win32.zip
+  firefox:
+    name: geckodriver-v0.21.0-win32.zip
+    link: https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-win32.zip
+  chrome:
+    name: chromedriver_win32.zip
+    link: https://chromedriver.storage.googleapis.com/2.42/chromedriver_win32.zip
 win64:
-  name: geckodriver-v0.21.0-win64.zip
-  firefox: https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-win64.zip
-
+  firefox:
+    name: geckodriver-v0.21.0-win64.zip
+    link: https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-win64.zip
+  chrome:
+    name: chromedriver_win32.zip
+    link: https://chromedriver.storage.googleapis.com/2.42/chromedriver_win32.zip
 
 linux32:
-  ff_name: geckodriver-v0.21.0-linux32.tar.gz
-  firefox: https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux32.tar.gz
-  chr_name: chromedriver_linux64.zip
-  chrome: https://chromedriver.storage.googleapis.com/2.42/chromedriver_linux64.zip
+  firefox:
+    name: geckodriver-v0.21.0-linux32.tar.gz
+    link: https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux32.tar.gz
+  chrome:
+    name: chromedriver_linux64.zip
+    link: https://chromedriver.storage.googleapis.com/2.42/chromedriver_linux64.zip
 linux64:
-  ff_name: geckodriver-v0.21.0-linux64.tar.gz
-  firefox: https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux64.tar.gz
-  chr_name: chromedriver_linux64.zip
-  chrome: https://chromedriver.storage.googleapis.com/2.42/chromedriver_linux64.zip
-
-move_drive:
-  cmd: "mv tmp/*.* $driver_directory"
-
-download_drive:
-  cmd: "curl -s -L $driver_url | tar -xz"
+  firefox:
+    name: geckodriver-v0.21.0-linux64.tar.gz
+    link: https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux64.tar.gz
+  chrome:
+    name: chromedriver_linux64.zip
+    link: https://chromedriver.storage.googleapis.com/2.42/chromedriver_linux64.zip
