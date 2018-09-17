@@ -46,4 +46,7 @@ end
 def osarchitecture
   o, e, s = Open3.capture3("wmic os get osarchitecture")
   o.gsub!(/\D/, '')
+rescue => ex
+  p ex
+  return "32"
 end
