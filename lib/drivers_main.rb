@@ -12,7 +12,6 @@ class DriverManager
     p @system = Gem::Platform.local.to_a.compact # ler as configuracoes da maquina.
     @path = __dir__ + "/data/list_cmds.yml"
     @dados = YAML::load_file(File.join(@path)) # dados do arquivo .yml
-    @cmds, @url, @file = [], nil, nil # inicializando as variaveis.
     @drivers = []
   end
 
